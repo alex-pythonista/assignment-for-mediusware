@@ -1,0 +1,33 @@
+{% extends "backend/base.html" %}
+
+{% block content %}
+<h2>Product Variant Prices</h2>
+
+{% regroup grouped_product_variant_prices by product as product_list %}
+
+{% for product in product_list %}
+    <h3>{{ product.grouper }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Variant One</th>
+                <th>Product Variant Two</th>
+                <th>Product Variant Three</th>
+                <th>Price</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in product.list %}
+            <tr>
+                <td>{{ item.product_variant_one }}</td>
+                <td>{{ item.product_variant_two }}</td>
+                <td>{{ item.product_variant_three }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.stock }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endblock %}
